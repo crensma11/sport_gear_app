@@ -1,3 +1,4 @@
+# Configuration code
 import os
 import sys
 from sqlalchemy import Column, ForeignKey, Integer, String
@@ -8,6 +9,7 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 
+# Class definitions with table names and mapper code.
 class Category(Base):
     __tablename__ = 'category'
 
@@ -25,6 +27,7 @@ class CategoryItem(Base):
     category = relationship(Category)
 
 
+# End configuration code
 engine = create_engine('sqlite:///categoryitem.db')
 
 
