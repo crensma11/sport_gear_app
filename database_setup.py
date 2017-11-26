@@ -10,25 +10,25 @@ Base = declarative_base()
 
 
 # Class definitions with table names and mapper code.
-class Category(Base):
-    __tablename__ = 'category'
+class Sport(Base):
+    __tablename__ = 'sport'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
 
 
-class CategoryItem(Base):
-    __tablename__ = 'category_item'
+class GearItem(Base):
+    __tablename__ = 'gear_item'
 
     name = Column(String(80), nullable=False)
     id = Column(Integer, primary_key=True)
     description = Column(String(250))
-    category_id = Column(Integer, ForeignKey('category.id'))
-    category = relationship(Category)
+    sport_id = Column(Integer, ForeignKey('sport.id'))
+    sport = relationship(Sport)
 
 
 # End configuration code
-engine = create_engine('sqlite:///categoryitem.db')
+engine = create_engine('sqlite:///sportgear.db')
 
 
 Base.metadata.create_all(engine)
