@@ -55,7 +55,7 @@ gearItem3 = GearItem(name="Football Cleats", description="Cleats or studs are"
 session.add(gearItem3)
 session.commit()
 
-gearItem4 = GearItem(name="Mouth Guard", description="A mouth guard is a soft
+gearItem4 = GearItem(name="Mouth Guard", description="A mouth guard is a soft"
                      "plastic or laminate device used in sports to prevent"
                      "oral injuries to the teeth, mouth, cheeks, tongue and"
                      "jaw.",
