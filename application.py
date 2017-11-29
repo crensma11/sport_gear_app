@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Sport, GearItem
@@ -17,14 +17,7 @@ session = DBSession()
 def sportGear(sport_id):
     sport = session.query(Sport).filter_by(id=sport_id).one()
     items = session.query(GearItem).filter_by(sport_id=sport.id)
-    output = ''
-    for i in items:
-        output += i.name
-        output += '</br>'
-        output += i.description
-        output += '</br>'
-        output += '</br>'
-    return output
+    return render_template('gear.html', sport=sport, items=items)
 
 
 # Create route for newGearItem function
