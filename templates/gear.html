@@ -4,6 +4,7 @@
 
 <h1>{{sport.name}}</h1>
 
+<a href = '{{url_for('newGearItem', sport_id = sport.id) }}'>Create New Item</a>
 
 {% for i in items %}
 
@@ -12,6 +13,11 @@
 <p>{{i.name}}</p>
 
 <p>{{i.description}}</p>
+
+<a href='{{url_for('editGearItem', sport_id = sport.id, gear_id = i.id) }}'>Edit</a>
+
+</br>
+<a href = '{{url_for('deleteGearItem', sport_id = sport.id, gear_id = i.id ) }}'>Delete</a>
 
 </div>
 
