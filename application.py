@@ -33,15 +33,33 @@ def newGearItem(sport_id):
 
 
 # Create route for editGearItem function
-@app.route('/sport/<int:sport_id>/<int:gear_id>/edit/')
+@app.route(
+    '/sport/<int:sport_id>/<int:gear_id>/edit/', methods=['GET', 'POST'])
 def editGearItem(sport_id, gear_id):
-    return "page to edit a gear item. Task 2 complete!"
+    editedItem = session.query(GearItem).filter_by(id=gear_id).one()
+    if request.method == 'POST':
+        if request.form['name']:
+            editedItem.name = request.form['name']
+        session.add(editedItem)
+        session.commit()
+        return redirect(url_for('sportGear', sport_id=sport_id))
+    else:
+        return render_template(
+            'editgearitem.html', sport_id=sport_id, gear_id=gear_id,
+            item=editedItem)
 
 
 # Create route for deleteGearItem function
-@app.route('/sport/<int:sport_id>/<int:gear_id>/delete/')
+@app.route(
+    '/sport/<int:sport_id>/<int:gear_id>/delete/', methods=['GET', 'POST'])
 def deleteGearItem(sport_id, gear_id):
-    return "page to delete a gear item. Task 3 complete!"
+    itemToDelete = session.query(GearItem).filter_by(id=gear_id).one()
+    if request.method == 'POST':
+        session.delete(itemToDelete)
+        session.commit()
+        return redirect(url_for('sportGear', sport_id=sport_id))
+    else:
+        return render_template('deletegearitem.html', item=itemToDelete)
 
 
 if __name__ == '__main__':
