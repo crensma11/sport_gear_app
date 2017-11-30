@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Sport, GearItem
@@ -27,6 +27,7 @@ def newGearItem(sport_id):
         newItem = GearItem(name=request.form['name'], sport_id=sport_id)
         session.add(newItem)
         session.commit()
+        flash("new gear item created!")
         return redirect(url_for('sportGear', sport_id=sport_id))
     else:
         return render_template('newgearitem.html', sport_id=sport_id)
@@ -42,6 +43,7 @@ def editGearItem(sport_id, gear_id):
             editedItem.name = request.form['name']
         session.add(editedItem)
         session.commit()
+        flash("Gear Item has been edited")
         return redirect(url_for('sportGear', sport_id=sport_id))
     else:
         return render_template(
@@ -57,11 +59,13 @@ def deleteGearItem(sport_id, gear_id):
     if request.method == 'POST':
         session.delete(itemToDelete)
         session.commit()
+        flash("Gear Item has been deleted")
         return redirect(url_for('sportGear', sport_id=sport_id))
     else:
         return render_template('deletegearitem.html', item=itemToDelete)
 
 
 if __name__ == '__main__':
+    app.secret_key = 'super_secret_key'
     app.debug = True
     app.run(host='0.0.0.0', port=8000)

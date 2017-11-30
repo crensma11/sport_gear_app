@@ -4,6 +4,17 @@
 
 <h1>{{sport.name}}</h1>
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
 <a href = '{{url_for('newGearItem', sport_id = sport.id) }}'>Create New Item</a>
 
 {% for i in items %}
