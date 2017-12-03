@@ -26,6 +26,15 @@ class GearItem(Base):
     sport_id = Column(Integer, ForeignKey('sport.id'))
     sport = relationship(Sport)
 
+    @property
+    def serialized(self):
+        # Returns object data in easily serialized format
+        return {
+            'name': self.name,
+            'description': self.description,
+            'id': self.id,
+        }
+
 
 # End configuration code
 engine = create_engine('sqlite:///sportgear.db')

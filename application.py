@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Sport, GearItem
@@ -10,6 +10,14 @@ Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+# API endpoint using JSON
+@app.route('/sport/<int:sport_id>/gear/JSON')
+def sportGearJSON(sport_id):
+    sport = session.query(Sport).filter_by(id=sport_id).one()
+    items = session.query(GearItem).filter_by(
+        sport_id=sport_id).all()
+    return jsonify(GearItems=[i.serialize for i in items])
 
 
 @app.route('/')
