@@ -7,12 +7,23 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 
+class User(Base):
+    __tablename__ = 'user'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250), nullable=False)
+    email = Column(String(250), nullable=False)
+    picture = Column(String(250))
+
+
 # Class definitions with table names and mapper code.
 class Sport(Base):
     __tablename__ = 'sport'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
 
     @property
     def serialize(self):
@@ -31,6 +42,8 @@ class GearItem(Base):
     description = Column(String(250))
     sport_id = Column(Integer, ForeignKey('sport.id'))
     sport = relationship(Sport)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
 
     @property
     def serialize(self):
@@ -43,7 +56,7 @@ class GearItem(Base):
 
 
 # End configuration code
-engine = create_engine('sqlite:///sportgear.db')
+engine = create_engine('sqlite:///sportgearwithusers.db')
 
 
 Base.metadata.create_all(engine)

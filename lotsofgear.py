@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from database_setup import Sport, Base, GearItem
+from database_setup import Sport, Base, GearItem, User
 
-engine = create_engine('sqlite:///sportgear.db')
+engine = create_engine('sqlite:///sportgearwithusers.db')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
 Base.metadata.bind = engine
@@ -18,13 +18,18 @@ DBSession = sessionmaker(bind=engine)
 # session.rollback()
 session = DBSession()
 
+User1 = User(name="Adam Crenshaw", email="crensma11@gmail.com",
+             picture='https://pbs.twimg.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
+session.add(User1)
+session.commit()
+
 # Gear for Football
-sport1 = Sport(name="Football")
+sport1 = Sport(user_id=1, name="Football")
 
 session.add(sport1)
 session.commit()
 
-gearItem1 = GearItem(name="Helmet", description="A piece of protective"
+gearItem1 = GearItem(user_id=1, name="Helmet", description="A piece of protective"
                      "equipment used mainly in American football and Canadian"
                      "football. It consists of a hard plastic shell with thick"
                      "padding on the inside, a face mask made of one or more"
@@ -34,7 +39,7 @@ gearItem1 = GearItem(name="Helmet", description="A piece of protective"
 session.add(gearItem1)
 session.commit()
 
-gearItem2 = GearItem(name="Neck Roll", description="a thick piece of padded"
+gearItem2 = GearItem(user_id=1, name="Neck Roll", description="a thick piece of padded"
                      "foam, comprised of vinyl or nylon, which is intended to"
                      "fit around the back of the shoulder pads along the"
                      "jersey's neckline. The equipment is designed to be"
@@ -44,7 +49,7 @@ gearItem2 = GearItem(name="Neck Roll", description="a thick piece of padded"
 session.add(gearItem2)
 session.commit()
 
-gearItem3 = GearItem(name="Football Cleats", description="Cleats or studs are"
+gearItem3 = GearItem(user_id=1, name="Football Cleats", description="Cleats or studs are"
                      "protrusions on the sole of a shoe, or on an external"
                      "attachment to a shoe, that provide additional"
                      "traction on a soft or slippery surface. They can be"
@@ -55,7 +60,7 @@ gearItem3 = GearItem(name="Football Cleats", description="Cleats or studs are"
 session.add(gearItem3)
 session.commit()
 
-gearItem4 = GearItem(name="Mouth Guard", description="A mouth guard is a soft"
+gearItem4 = GearItem(user_id=1, name="Mouth Guard", description="A mouth guard is a soft"
                      "plastic or laminate device used in sports to prevent"
                      "oral injuries to the teeth, mouth, cheeks, tongue and"
                      "jaw.",
@@ -64,7 +69,7 @@ gearItem4 = GearItem(name="Mouth Guard", description="A mouth guard is a soft"
 session.add(gearItem4)
 session.commit()
 
-gearItem5 = GearItem(name="Thigh, Hip and Knee Pads", description="Hip and"
+gearItem5 = GearItem(user_id=1, name="Thigh, Hip and Knee Pads", description="Hip and"
                      "tailbone pads are made of plastic and protect the hips,"
                      "pelvis, and coccyx or tailbone. The pads are inserted"
                      "into the pockets of a girdle worn under the football"
@@ -76,7 +81,7 @@ gearItem5 = GearItem(name="Thigh, Hip and Knee Pads", description="Hip and"
 session.add(gearItem5)
 session.commit()
 
-gearItem6 = GearItem(name="Shoulder Pads", description="Shoulder pads consist"
+gearItem6 = GearItem(user_id=1, name="Shoulder Pads", description="Shoulder pads consist"
                      "of a hard plastic shell with foam padding underneath."
                      "The pads fit over the shoulders and the chest and rib"
                      "area, and are secured with various snaps and buckles.",
@@ -86,12 +91,12 @@ session.add(gearItem6)
 session.commit()
 
 # Gear for Basketball
-sport2 = Sport(name="Basketball")
+sport2 = Sport(user_id=1, name="Basketball")
 
 session.add(sport2)
 session.commit()
 
-gearItem1 = GearItem(name="Basketball Sneakers", description="Players should"
+gearItem1 = GearItem(user_id=1, name="Basketball Sneakers", description="Players should"
                      "wear comfortable, properly fitting basketball sneakers."
                      "There are so many styles, varieties and names to choose"
                      "from today that it is often difficult to know which"
@@ -107,7 +112,7 @@ gearItem1 = GearItem(name="Basketball Sneakers", description="Players should"
 session.add(gearItem1)
 session.commit()
 
-gearItem2 = GearItem(name="Athletic Socks", description="Players should wear"
+gearItem2 = GearItem(user_id=1, name="Athletic Socks", description="Players should wear"
                      "two pairs of athletic socks. This will help prevent"
                      "their feet and toes from blistering and will also"
                      "provide additional comfort for their feet.",
@@ -116,7 +121,7 @@ gearItem2 = GearItem(name="Athletic Socks", description="Players should wear"
 session.add(gearItem2)
 session.commit()
 
-gearItem3 = GearItem(name="Athletic Shorts", description="Players should wear"
+gearItem3 = GearItem(user_id=1, name="Athletic Shorts", description="Players should wear"
                      "a loose-fitting, comfortable pair of athletic shorts."
                      "This will allow them to move quickly and freely without"
                      "any restrictions on their legs or lower body.",
@@ -125,7 +130,7 @@ gearItem3 = GearItem(name="Athletic Shorts", description="Players should wear"
 session.add(gearItem3)
 session.commit()
 
-gearItem4 = GearItem(name="Athletic Jersey", description="Players should wear"
+gearItem4 = GearItem(user_id=1, name="Athletic Jersey", description="Players should wear"
                      "a loose-fitting, comfortable shirt, jersey or tank-top."
                      "Again, this will allow them to move quickly and freely"
                      "without having their arms or upper body restricted.",
@@ -134,7 +139,7 @@ gearItem4 = GearItem(name="Athletic Jersey", description="Players should wear"
 session.add(gearItem4)
 session.commit()
 
-gearItem5 = GearItem(name="Mouth Piece", description="Players should wear a"
+gearItem5 = GearItem(user_id=1, name="Mouth Piece", description="Players should wear a"
                      "mouth piece to protect their teeth, tongue, cheeks and"
                      "lips from injuries caused by accidental contact. More"
                      "and more players are wearing mouth pieces due to the"
@@ -145,7 +150,7 @@ gearItem5 = GearItem(name="Mouth Piece", description="Players should wear a"
 session.add(gearItem5)
 session.commit()
 
-gearItem6 = GearItem(name="Basketball", description="This falls more in the"
+gearItem6 = GearItem(user_id=1, name="Basketball", description="This falls more in the"
                      "basketball equipment section rather than the basketball"
                      "player equipment section. But I think it is still"
                      "something every player should have in order to practice"
@@ -160,12 +165,12 @@ session.add(gearItem6)
 session.commit()
 
 # Gear for Baseball
-sport3 = Sport(name="Baseball")
+sport3 = Sport(user_id=1, name="Baseball")
 
 session.add(sport3)
 session.commit()
 
-gearItem1 = GearItem(name="Baseball Ceats", description="Cleats began to be"
+gearItem1 = GearItem(user_id=1, name="Baseball Ceats", description="Cleats began to be"
                      "used in the United States in the 1860s when metal spikes"
                      "were first used on baseball shoes. A baseball shoe, as"
                      "defined by the Dickson Baseball Dictionary (3rd Ed),"
@@ -177,7 +182,7 @@ gearItem1 = GearItem(name="Baseball Ceats", description="Cleats began to be"
 session.add(gearItem1)
 session.commit()
 
-gearItem2 = GearItem(name="Glove", description="A baseball glove or mitt is a"
+gearItem2 = GearItem(user_id=1, name="Glove", description="A baseball glove or mitt is a"
                      "large leather glove worn by baseball players of the"
                      "defending team, which assists players in catching and"
                      "fielding balls hit by a batter or thrown by a teammate.",
@@ -186,7 +191,7 @@ gearItem2 = GearItem(name="Glove", description="A baseball glove or mitt is a"
 session.add(gearItem2)
 session.commit()
 
-gearItem3 = GearItem(name="Bat", description="A baseball bat is a smooth"
+gearItem3 = GearItem(user_id=1, name="Bat", description="A baseball bat is a smooth"
                      "wooden or metal club used in the sport of baseball to"
                      "hit the ball after it is thrown by the pitcher.",
                      sport=sport3)
@@ -194,7 +199,7 @@ gearItem3 = GearItem(name="Bat", description="A baseball bat is a smooth"
 session.add(gearItem3)
 session.commit()
 
-gearItem4 = GearItem(name="Baseball", description="the ball used in this game,"
+gearItem4 = GearItem(user_id=1, name="Baseball", description="the ball used in this game,"
                      "being a sphere approximately 3 inches (7 cm) in diameter"
                      "with a twine-covered center of cork covered by stitched"
                      "horsehide.",
@@ -203,7 +208,7 @@ gearItem4 = GearItem(name="Baseball", description="the ball used in this game,"
 session.add(gearItem4)
 session.commit()
 
-gearItem5 = GearItem(name="Uniform", description="A baseball uniform is a type"
+gearItem5 = GearItem(user_id=1, name="Uniform", description="A baseball uniform is a type"
                      "of uniform worn by baseball players. Most baseball"
                      "uniforms have the names and uniform numbers of players"
                      "who wear them, usually on the backs of the uniforms to"
@@ -214,12 +219,12 @@ session.add(gearItem5)
 session.commit()
 
 # Gear for Golf
-sport4 = Sport(name="Golf")
+sport4 = Sport(user_id=1, name="Golf")
 
 session.add(sport4)
 session.commit()
 
-gearItem1 = GearItem(name="Clubs", description="A golf club is a club used to"
+gearItem1 = GearItem(user_id=1, name="Clubs", description="A golf club is a club used to"
                      "hit a golf ball in a game of golf. Each club is composed"
                      "of a shaft with a grip and a club head. Woods are mainly"
                      "used for long-distance fairway or tee shots; irons, the"
@@ -236,7 +241,7 @@ gearItem1 = GearItem(name="Clubs", description="A golf club is a club used to"
 session.add(gearItem1)
 session.commit()
 
-gearItem2 = GearItem(name="Shoes", description="an oxford shoe of waterproof"
+gearItem2 = GearItem(user_id=1, name="Shoes", description="an oxford shoe of waterproof"
                      "leather with sole spikes or hobnails that is worn"
                      "especially for golfing.",
                      sport=sport4)
@@ -244,7 +249,7 @@ gearItem2 = GearItem(name="Shoes", description="an oxford shoe of waterproof"
 session.add(gearItem2)
 session.commit()
 
-gearItem3 = GearItem(name="Balls", description="a small, white ball with a"
+gearItem3 = GearItem(user_id=1, name="Balls", description="a small, white ball with a"
                      "tough cover and a resilient core of rubber, used in"
                      "playing golf.",
                      sport=sport4)
@@ -252,7 +257,7 @@ gearItem3 = GearItem(name="Balls", description="a small, white ball with a"
 session.add(gearItem3)
 session.commit()
 
-gearItem4 = GearItem(name="Tees", description="A golf tee is typically a thin,"
+gearItem4 = GearItem(user_id=1, name="Tees", description="A golf tee is typically a thin,"
                      "wood or plastic peg, two or three inches in height, atop"
                      "which a golf ball sits in a stable and stationary"
                      "position. The tee is pushed down into the turf on the"
@@ -264,7 +269,7 @@ gearItem4 = GearItem(name="Tees", description="A golf tee is typically a thin,"
 session.add(gearItem4)
 session.commit()
 
-gearItem5 = GearItem(name="Divot Tool", description="A small, pronged, plastic"
+gearItem5 = GearItem(user_id=1, name="Divot Tool", description="A small, pronged, plastic"
                      "or metal utensil for repairing ball marks on the putting"
                      "green. Keep in mind that ball marks on the putting green"
                      "are always in the shape of a narrow V. The grass has"
@@ -275,7 +280,7 @@ gearItem5 = GearItem(name="Divot Tool", description="A small, pronged, plastic"
 session.add(gearItem5)
 session.commit()
 
-gearItem6 = GearItem(name="Range Finder", description="Golf GPS rangefinders"
+gearItem6 = GearItem(user_id=1, name="Range Finder", description="Golf GPS rangefinders"
                      "are used in the sport of golf to aid the player in"
                      "accurately determining the distance to certain fixed"
                      "points on a golf course, such as the green or various"
