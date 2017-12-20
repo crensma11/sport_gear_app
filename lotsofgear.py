@@ -19,7 +19,7 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 User1 = User(name="Adam Crenshaw", email="crensma11@gmail.com",
-             picture='https://pbs.twimg.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
+             picture='static/blank_user.gif')
 session.add(User1)
 session.commit()
 

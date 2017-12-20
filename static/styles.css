@@ -56,12 +56,12 @@ h3 {
 .btn {
 	padding: 20px;
 	margin: 0;
-	border-color: #9FB80A;
+	border-color: #0ab8b8;
 	border-width: 2px;
-	color: #9FB80A;;
+	color: #0ab8b8;;
 }
 .btn:hover {
-	border-color: #9FB80A;
+	border-color: #0ab8b8;
 }
 .btn.delete {
 	border-color: #aaaaaa;
@@ -69,7 +69,7 @@ h3 {
 }
 .btn.delete:hover {
 	border-color: #aaaaaa;
-	color: red;
+	color: F87666;
 }
 .glyphicon {
 	margin-right: 10px;
@@ -92,11 +92,11 @@ h3 {
 .divider {
 	height: 15px;
 }
-.divider.blue {
-	background-color: #42C3C9;
+.divider.red {
+	background-color: #ee4132;
 }
-.divider.green {
-	background-color: #9FB80A;
+.divider.blue {
+	background-color: #0a11b8;
 }
 .banner.main {
 	height: 150px;
@@ -107,7 +107,7 @@ h3 {
 }
 .banner.gear {
 	height: 150px;
-	background-color: #E1E17F;
+	background-color: #e07f7f;
 }
 .banner.profile {
 	height: 150px;
@@ -121,7 +121,7 @@ h3 {
  	padding: 20px;
 u }
  .sport-list:hover {
- 	background-color: #e1e17f;
+ 	background-color: #e07f7f;
  	padding: 20px;
 }
 .gear-item {
@@ -147,7 +147,7 @@ u }
 	margin-top: -20px;
 }
 .flash {
-	background-color: #98FB98;
+	background-color: #f9a501;
 	width:100%;
 	text-decoration: none;
 
