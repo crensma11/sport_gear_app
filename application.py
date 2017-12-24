@@ -319,7 +319,9 @@ def editSport(sport_id):
     if 'username' not in login_session:
         return redirect('/login')
     if editedSport.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to edit this sport. Please create your own sport in order to edit.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('You are not authorized \
+        to edit this sport. Please create your own sport in order to edit.');}\
+        </script><body onload='myFunction()''>"
     if request.method == 'POST':
         if request.form['name']:
             editedSport.name = request.form['name']
@@ -336,7 +338,9 @@ def deleteSport(sport_id):
     if 'username' not in login_session:
         return redirect('/login')
     if sportToDelete.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to delete this sport. Please create your own sport in order to delete.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('You are not authorized \
+        to delete this sport. Please create your own sport in order to \
+        delete.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         session.delete(sportToDelete)
         flash('%s Successfully Deleted' % sportToDelete.name)
@@ -368,7 +372,9 @@ def newGearItem(sport_id):
         return redirect('/login')
     sport = session.query(Sport).filter_by(id=sport_id).one()
     if login_session['user_id'] != sport.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to add gear items to this sport. Please create your own sport in order to add items.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('You are not authorized \
+        to add gear items to this sport. Please create your own sport in \
+        order to add items.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         newItem = GearItem(
             name=request.form['name'], description=request.form['description'],
@@ -390,7 +396,9 @@ def editGearItem(sport_id, gear_id):
     editedItem = session.query(GearItem).filter_by(id=gear_id).one()
     sport = session.query(Sport).filter_by(id=sport_id).one()
     if login_session['user_id'] != sport.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to edit gear items for this sport. Please create your own sport in order to edit items.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('You are not authorized \
+        to edit gear items for this sport. Please create your own sport in \
+        order to edit items.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         if request.form['name']:
             editedItem.name = request.form['name']
@@ -416,7 +424,9 @@ def deleteGearItem(sport_id, gear_id):
     sport = session.query(Sport).filter_by(id=sport_id).one()
     itemToDelete = session.query(GearItem).filter_by(id=gear_id).one()
     if login_session['user_id'] != sport.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to delete gear items from this sport. Please create your own sport in order to delete items.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('You are not authorized \
+        to delete gear items from this sport. Please create your own sport in \
+        order to delete items.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         session.delete(itemToDelete)
         session.commit()
